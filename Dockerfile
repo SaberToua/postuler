@@ -22,6 +22,12 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Expose port 8000
 EXPOSE 8000
+# Install Node & npm
+RUN apt-get update && apt-get install -y nodejs npm
+
+# Install dependencies and build assets
+RUN npm install
+RUN npm run build
 
 # Start Laravel
 CMD php artisan serve --host=0.0.0.0 --port=8000
