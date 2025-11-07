@@ -19,7 +19,6 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Generate application key
-RUN php artisan key:generate
 
 # Expose port 8000
 EXPOSE 8000
