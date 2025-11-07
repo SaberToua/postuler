@@ -26,6 +26,7 @@ EXPOSE 8000
 RUN apt-get update && apt-get install -y nodejs npm
 
 # Install dependencies and build assets
+RUN rm -rf public/build
 RUN npm install
 RUN npm run build
 
