@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y nodejs npm
 # Force reinstall of all dependencies including dev dependencies
 RUN rm -rf node_modules
 RUN npm install --include=dev
-RUN npm run prod
+RUN npm run production
 
 
 CMD php artisan migrate --force && php-fpm
