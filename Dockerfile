@@ -28,6 +28,7 @@ EXPOSE 8000
 RUN apt-get update && apt-get install -y nodejs npm
 
 # Install dependencies and build assets
+RUN npm install --production --no-audit --prefer-offline --no-progress
 
 CMD php artisan migrate --force && php-fpm
 
