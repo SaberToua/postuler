@@ -28,7 +28,9 @@ EXPOSE 8000
 RUN apt-get update && apt-get install -y nodejs npm
 
 # Install dependencies and build assets
-RUN npm install --production --no-audit --prefer-offline --no-progress
+# Install npm dependencies and build assets
+RUN npm ci --no-audit --prefer-offline --no-progress
+RUN npm run build  # ← THIS IS THE CRITICAL LINE
 
 CMD php artisan migrate --force && php-fpm
 
