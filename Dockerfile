@@ -29,8 +29,10 @@ RUN apt-get update && apt-get install -y nodejs npm
 
 # Install dependencies and build assets
 # Install npm dependencies and build assets
-RUN npm ci --no-audit --prefer-offline --no-progress
-RUN npm run build  # ← THIS IS THE CRITICAL LINE
+# Force reinstall of all dependencies including dev dependencies
+RUN rm -rf node_modules
+RUN npm install --include=dev
+RUN npm run build
 
 CMD php artisan migrate --force && php-fpm
 
