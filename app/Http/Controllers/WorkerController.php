@@ -83,7 +83,7 @@ function cosineSimilarity($vecA, $vecB) {
      */
     public function index($id)
     {
-
+ 
         return view('offre.workerinput',compact('id'));
     }
 

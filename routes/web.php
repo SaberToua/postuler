@@ -151,8 +151,8 @@ Route::get('/notifications', function () {
 Route::get('/mark-as-read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 });
 
-Route::middleware([isworkowner::class])->group(function () {
-
+Route::middleware([auth::class])->group(function () {
+ 
     Route::post('/step1', [OffreController::class,'step1'])->name('offre.step1');
     Route::post('/step2', [OffreController::class,'step2'])->name('offre.step2');
     Route::post('/step3', [OffreController::class,'step3'])->name('offre.step3');
@@ -161,6 +161,7 @@ Route::middleware([isworkowner::class])->group(function () {
 
     ->name('publish');
     Route::get('/youroffres/{id}', [OffreController::class, 'display'])->name('offre.youroffres');
+     Route::get('/editoffre/{offre}', [OffreController::class, 'edit'])->name('offre.edit');
     Route::get('/show/{id}', [WorkerController::class, 'mydisplay'])->name('offre.show');
     Route::post('/accept-condidate', [WorkerController::class, 'accept'])->name('worker.accept');
 });
@@ -174,7 +175,7 @@ Route::middleware([admin::class])->group(function () {
     Route::get('/set as filtred/{id}', [WorkerController::class, 'filtred'])->name('filtred');
     Route::get('all-users', [AuthenticatedSessionController::class, 'all'])
                 ->name('all-users');
-                Route::get('/editoffre/{offre}', [OffreController::class, 'edit'])->name('offre.edit');
+         //       Route::get('/editoffre/{offre}', [OffreController::class, 'edit'])->name('offre.edit');
 Route::patch('/update-offres/{offre}', [OffreController::class, 'update'])->name('offre.update');
 Route::get('accept-workowner/{id}', [AuthenticatedSessionController::class, 'accept'])
                             ->name('accept');

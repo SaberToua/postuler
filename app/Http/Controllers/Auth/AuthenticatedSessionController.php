@@ -27,11 +27,11 @@ class AuthenticatedSessionController extends Controller
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function store(LoginRequest $request): RedirectResponse
-    {
+    {      
         $request->authenticate();
-
+         
         $request->session()->regenerate();
-
+        
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

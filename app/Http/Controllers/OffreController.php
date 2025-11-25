@@ -150,13 +150,44 @@ public function home(){
                 'image' => 'image|mimes:jpg,jfif,png,jpeg|max:1024'
 
             ]);
-            if ($request->hasFile('image')) {
+            $offre = new Offre();
+         //   $imagePath = null;
+       /* if ($this->request->hasFile('image')) {
+            // Store the file in the 'public/cv' directory
+            $imagePath = $this->request->file('image')->store('images', 'public');
+            $offre->image= $imagePath;
+        }*/
+
+            $offre->site=$request['website'];
+
+            $offre->titre = $request['titre'];
+            $offre->company = $request['company'];
+            $offre->lieu= $request['lieu'];
+            $offre->nb_post = $request['nb_post'];
+            $offre->description = $request['points'];
+            $offre->workowner= $request['workowner'];
+            $offre->skills = $request['skills'];
+            $offre->works = $request['works'];
+            $offre->points=$request['points'];
+            $offre->tool1= $request['tool1'];
+            $offre->tool2= $request['tool2'];
+            $offre->tool3= $request['tool3'];
+            $offre->image=$request['imagePath'];
+            $offre->category_id= $request['category'];
+            $offre->latitude = $request['latitude'];
+            $offre->longitude = $request['longitude'];
+           // $offre->tools = json_encode($this->request->tools);
+    if ($request->hasFile('image')) {
                 // Store the file in the 'public/cv' directory
                 $imagePath = $request->file('image')->store('images', 'public');
 
                 $request->merge(['imagePath' => $imagePath]);
-
+                $offre->image= $imagePath;
             }
+           // Gate::authorize('create',$offre);
+ Log:info('offer',$offre->toArray());
+            $offre->save();
+            
 
 
            sendEmail::dispatch($request->except('image'))->onQueue('emails-sending');;
@@ -193,7 +224,7 @@ $tools = DB::table('tools')
      */
     public function edit(offre $offre)
     {
-        Gate::authorize('update', $offre);
+        //Gate::authorize('update', $offre);
 
         $tools=tool::all();
         $catigories=category::all();

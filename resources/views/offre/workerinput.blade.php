@@ -53,7 +53,7 @@
 
 
 
-            <input type="hidden" name="concernedoffre" value="{{$id}}">
+            <input type="hidden" name="concernedoffre" value="{{session('offre_id')}}" >
 
             <x-primary-button class="mt-4">{{ __('SUBMIT') }}</x-primary-button>
 
