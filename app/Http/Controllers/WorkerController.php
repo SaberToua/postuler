@@ -131,7 +131,7 @@ function cosineSimilarity($vecA, $vecB) {
     $worker->phone=$request->phone;
     $worker->save();
 
-    $parser = new Parser();
+   $parser = new Parser();
 $pdf    = $parser->parseFile(storage_path('app/public/' . $worker->cv_path));
 $text   = $pdf->getText();
 

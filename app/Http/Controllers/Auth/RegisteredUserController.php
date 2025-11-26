@@ -29,7 +29,7 @@ class RegisteredUserController extends Controller
             'Remail' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults(),
 
-            Password::min(8)
+           Password::min(8)
             ->mixedCase()
             ->letters()
             ->numbers()
@@ -38,10 +38,11 @@ class RegisteredUserController extends Controller
             'isworkowner' => 'nullable'
         ]);
         $role = $request->has('isworkowner') ? 'workowner' : 'user';
+
         $user = User::create([
             'name' => $request->Rname,
             'email' => $request->Remail,
-            'password' => Hash::make($request->string('Rpassword')),
+            'password' => Hash::make($request->string('password')),
              'role'=>$role
         ]);
       /*   if ($validator->fails()) {

@@ -180,7 +180,6 @@ public function home(){
     if ($request->hasFile('image')) {
                 // Store the file in the 'public/cv' directory
                 $imagePath = $request->file('image')->store('images', 'public');
-
                 $request->merge(['imagePath' => $imagePath]);
                 $offre->image= $imagePath;
             }
@@ -205,6 +204,7 @@ public function home(){
      */
     public function show(offre $offre)
     {
+        
         $chirps=Chirp::where('offer_id',$offre->id)->get();
 
 
